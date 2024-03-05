@@ -1,0 +1,86 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+
+body {
+  font-family: "Roboto", sans-serif;
+
+}
+
+section {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.container {
+  margin: 0 10px ;
+}
+.page-logo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+
+.page-logo img {
+  max-width: 200px;
+  max-height: 200px;
+}
+.page-logo h2{
+  margin: 1rem;
+  font-size: 20px;
+}
+
+  /* Style the accordion */
+  .dropdown-content {
+    display: none;
+    overflow: hidden;
+    max-height: 0;
+    transition: all 0.3s ease-out;
+  }
+
+  .menu-item.active .dropdown-content {
+    display: block;
+    max-height: 1000px; /* Adjust this value according to your content */
+   
+  }
+  .source-code-list ul li.menu-item {
+    list-style: none;
+    padding: 1rem;
+    border-radius: 5px;
+   
+  
+    border-bottom: 1px solid #ebebeb;
+}
+.source-code-list ul li.menu-item a{
+  text-decoration: none;
+  color: black;
+  font-weight: 500;
+}
+.source-code-list ul li.menu-item:hover {
+  background-color: #ebebeb;
+}
+.source-code-list ul li.menu-item:hover > a {
+  color: rgb(240, 23, 23);
+}
+ul#pagination li {
+  list-style: none;
+  display: inline-block;
+  padding: 7px;
+  cursor: pointer;
+}
+/* .source-code-list ul li.menu-item i{
+  transition: all .3s ease-in-out;
+}
+.source-code-list ul li.menu-item.active > i{
+  transform: rotate(180deg);
+} */
+.soon-info h2 {
+  padding: 1rem;
+  color: green;
+}

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scriptriz - Github Repository</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+<style>
+  /* Pagination styles */
+  .pagination {
+    display: inline-block;
+    margin-top: 20px;
+  }
+
+  .pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    border: 1px solid #ddd;
+  }
+
+  .pagination a.active {
+    background-color: #4CAF50;
+    color: white;
+    border: 1px solid #4CAF50;
+  }
+
+  .pagination a:hover:not(.active) {
+    background-color: #ddd;
+  }
+</style>
+</head>
+<body>
+<section>
+<div class="container">
+    <div class="page-logo">
+        <img src="Scriptriz.png">
+        <h2>Github Repository</h2>
+    </div>
+  <div class="source-code-list">
+    <ul>
+    <li class="menu-item"><a href="https://codepen.io/scriptriz/pen/dyLoqBE">Animated Wave Bars: SVG & GSAP Integration</a>  </li>
+    <li class="menu-item"><a href="https://codepen.io/scriptriz/pen/MWRwPgr">Satisfying Curly Cursor ( 3kb of Vanilla JavaScript on Canvas )</a>  </li>
+        <!-- <ul class="dropdown-content">
+          <li><a href="#">Submenu 1</a></li>
+          <li><a href="#">Submenu 2</a></li>
+          <li><a href="#">Submenu 3</a></li>
+          <li><a href="#">Submenu 4</a></li>
+        </ul>
+      </li>
+      <li class="menu-item"><a href="#">What is Section in HTML</a></li>
+      <li class="menu-item"><a href="#">Responsive Web Design</a></li>
+      <li class="menu-item"><a href="#">JavaScript Interactivity</a>
+        <ul class="dropdown-content">
+          <li><a href="#">Submenu 5</a></li>
+          <li><a href="#">Submenu 6</a></li>
+          <li><a href="#">Submenu 7</a></li>
+          <li><a href="#">Submenu 8</a></li>
+        </ul> 
+      </li>
+      <li class="menu-item"><a href="#">JavaScript Interactivity</a></li> -->
+    </ul>
+  </div>
+  <div class="soon-info">
+  
+    <h2 id="text"></h2>
+</div>
+  <!-- Pagination -->
+<!--  
+<div class="result-page-pagination">
+    <ul class="pagination" id="pagination"></ul>
+</div> -->
+</section>
+<script>
+  // Add event listeners to the menu items to toggle active class
+  const menuItems = document.querySelectorAll('.menu-item');
+
+  menuItems.forEach(item => {
+    item.addEventListener('click', () => {
+      // Toggle the active class for the clicked menu item
+      item.classList.toggle('active');
+      
+      // Collapse other dropdowns if any
+      menuItems.forEach(otherItem => {
+        if (otherItem !== item) {
+          otherItem.classList.remove('active');
+        }
+      });
+    });
+  });
+
+  
+</script>
+<script>
+const textElement = document.getElementById("text");
+const textToType = textElement.innerText;
+const wordsToType = [
+  "Soon...",
+  "Stay Tuned...",
+];
+
+const maxWordLength = Math.max(...wordsToType.map((word) => word.length));
+
+let currentWordIndex = 0;
+let currentWord = wordsToType[currentWordIndex];
+
+let index = 0;
+function typeText() {
+  textElement.innerText = currentWord.slice(0, index++);
+
+  if (index <= currentWord.length) {
+    setTimeout(typeText, 150);
+  } else {
+    setTimeout(eraseText, 5000);
+  }
+}
+
+function eraseText() {
+  textElement.innerText = currentWord.slice(0, index);
+
+  if (index > 0) {
+    index--;
+    setTimeout(eraseText, 150);
+  } else {
+    currentWordIndex = (currentWordIndex + 1) % wordsToType.length;
+    currentWord = wordsToType[currentWordIndex];
+    setTimeout(typeText, maxWordLength * 50);
+  }
+}
+
+typeText();
+</script>
+<!-- 
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+const itemsPerPage = 3; // Number of items per page
+const items = document.querySelectorAll('.menu-item'); // Correct selector
+const pagination = document.getElementById('pagination');
+
+let currentPage = 1;
+
+function showPage(page) {
+    const startIndex = (page - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+
+    items.forEach((item, index) => {
+        if (index >= startIndex && index < endIndex) {
+            item.style.opacity = 1;
+            item.style.visibility = 'visible'; // Show the item
+            item.style.transition = 'all 0.3s ease-in-out';
+        } else {
+            item.style.opacity = 0;
+            item.style.visibility = 'hidden'; // Hide the item
+            item.style.transition = 'all 0.3s ease-in-out';
+        }
+    });
+
+    // Set a timeout to change display property after the transition
+    setTimeout(() => {
+        items.forEach((item, index) => {
+            if (index >= startIndex && index < endIndex) {
+                item.style.display = 'block'; // Show the item
+            } else {
+                item.style.display = 'none'; // Hide the item
+            }
+        });
+    }, 500); // Adjust the timeout based on your transition duration
+}
+
+
+function updatePagination() {
+    const totalPages = Math.ceil(items.length / itemsPerPage);
+
+    // Clear existing pagination
+    pagination.innerHTML = '';
+
+    for (let i = 1; i <= totalPages; i++) {
+        const li = document.createElement('li');
+        li.innerText = i;
+
+        // Highlight the current page
+        if (i === currentPage) {
+            li.classList.add('active');
+        }
+
+        li.addEventListener('click', function () {
+            currentPage = i;
+            showPage(currentPage);
+            updatePagination();
+        });
+
+        pagination.appendChild(li);
+    }
+}
+
+// Initial setup
+showPage(currentPage);
+updatePagination();
+});
+
+</script> -->
+
+
+</body>
+</html>
